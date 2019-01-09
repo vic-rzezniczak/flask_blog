@@ -6,11 +6,11 @@ import re
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route('/')
 def home():
     return "Hello, Flask!"
 
-@app.route("/hello/<name>")
+@app.route('/hello/<name>')
 def hello_there(name):
     #formatted_now = now.strftime("%A, %d %B, %Y at %X")
 
@@ -18,3 +18,7 @@ def hello_there(name):
     #content = f'Hello there, {name}! It\'s {formatted_now}'
 
     return render_template('index.html', title='Hello, Flask', name=name, date=datetime.now())
+
+@app.route('/api/data')
+def get_data():
+    return app.send_static_file('data.json')
